@@ -42,6 +42,8 @@ This responds to the headers that pjax sends via ajax (`x-pjax` and `x-pjax-cont
 
 ## Examples
 
+![Working example](https://raw.github.com/sjezewski/hackathon_pjax/master/irl.png)
+
 - Open your inspector
 - Look at the network tab
 - Hit the 'XHR' filter so you only see ajax requests
