@@ -10,6 +10,13 @@
 }
 
 
+@func Text.pjax_html(Text %encoding) {
+
+
+}
+
+@func Text.pjax_html() {
+}
 
 ####################
 ### Bundled Functions
