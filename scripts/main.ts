@@ -1,3 +1,5 @@
+#log("CONTENT TYPEZ:" + $content_type)
+
 # The main file executed by Tritium. The start of all other files.
 
 match($content_type) {
@@ -21,3 +23,5 @@ match($content_type) {
     log(concat("Passing through ", $content_type, " unmodified"))
   }
 }
+
+

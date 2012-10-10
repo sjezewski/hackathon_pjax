@@ -1,16 +1,20 @@
 # HTML Transformations go here
 
 $("/html") {
-  rewrite_links()
-  absolutize_srcs()
+ rewrite_links()
+ absolutize_srcs()
 
-  add_assets()
+ add_assets()
 
-  @import sections/header.ts
-  @import sections/footer.ts
+ @import sections/header.ts
+ @import sections/footer.ts
 
-  @import mappings.ts
-  #pjaxify()
+ @import mappings.ts
+ 
+ 
+ 
+ 
+  $(".//*[contains(@class,'sub-nav')]//a") {
+    pjaxify("#main")
+  }
 }
-
-#pjaxify()

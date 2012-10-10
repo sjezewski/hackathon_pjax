@@ -2,17 +2,38 @@
 ##  PJAX FUNCTIONS
 ######
 
-@func pjaxify() {
+@func XMLNode.pjaxify(Text %css_selector) {
   match($x_pjax, /.+/) {
     log("PAXJASDFASDFASDGF!!")
   }
   log(": ------------------- /")
+
+  attribute("data-pjax", %css_selector)
+  
 }
 
 
 @func Text.pjax_html(Text %encoding) {
+  match($x_pjax, /.+/) {
+    $pjax = "true"    
+  }
 
-
+   html(%encoding) {  
+     yield()
+   }
+    match($pjax) {
+      with("true") {
+        log("PJAX!!!!")
+        $title = "<title> wowweee </title>"
+        $content = "<span onclick='javascript:alert(\"hi\")'> Click me </span>"
+        log($title + "\n\n")
+        log($content + "\n\n")
+        set($title + "\r\n\r\n" + $content)
+      }
+      else() {
+   
+      }
+    }
 }
 
 @func Text.pjax_html() {
