@@ -1,77 +1,19 @@
-####################
-### Site Functions
-####################
+###### 
+##  PJAX FUNCTIONS
+######
 
-# BTN DELEGATE
-# 
-# EXAMPLE CSS
-# .mw_hide2 {
-#   visibility: hidden!important;
-#   position: absolute!important;
-#   left: -99999px!important;
-# }
-
-#  EXAMPLE TS
-#
-#  $(".//input[@type='submit']") {
-#    attributes(id: "mw_id", alt: "mw_alt")
-#
-#    btn_delegate() {
-#      add_class("mw_btn_500000000050")
-#      // in a pinch you can do other scoping in here
-#    }
-#  }
-
-@func XMLNode.btn_delegate() {
-  %class = fetch("./@class")
-  %mw_id = concat("mw_", name(), "_", fetch("./@id"))
-  %text = fetch("./@alt")
-
-  %text {
-    replace(/_/, " ")
+@func pjaxify() {
+  match($x_pjax, /.+/) {
+    log("PAXJASDFASDFASDGF!!")
   }
-
-  insert_before("div", %text, class: %class) {
-    attributes(onclick: concat("var event=arguments[0]||window.event;event.preventDefault;event.stopPropagation;x$('[data-mw-btn-id=\"", %mw_id, "\"]').click()"))
-
-    yield()
-  }
-
-  attributes(data-mw-btn-id: %mw_id)
-  add_class("mw_hide2")
+  log(": ------------------- /")
 }
 
 
-# A compendium of ways to "dump" tables
-#
-#
-# EXAMPLE::
-# 
-# table_dump(".//table") {
-#   $("./div[class='some_class']") {
-#     add_class("mw_more_scopes")
-#   }
-# }
-#
-#
-@func XMLNode.table_dump(Text %xpath){
-  $(%xpath) {
-    name("div")
-    add_class("mw_was_table")
 
-    $(".//table | .//tr | .//td | .//th | .//thead | .//tfoot | .//tbody | .//col | .//colgroup | .//caption") {
-      %i = index()
-      %n = name()
-      name("div")
-      attributes(data-mw-id: concat("mw_dump_", %n, %i), width: "")
-      add_class(concat("mw_was_", %n))
-    }
-
-    yield()
-  }
-}
-
-
+####################
+### Bundled Functions
+####################
 
 # Remove Styles Functions
 @func XMLNode.remove_external_styles() {
@@ -129,14 +71,16 @@
 
 # Add in our Assets
 @func XMLNode.add_assets() {
-  $("./head") {
-    #insert("link", rel: "stylesheet", type: "text/css", href: sass($device_stylesheet))
-    insert("link", rel: "shortcut icon", href: asset("images/favicon.ico"))
-    # The images below are placeholders, get real ones from the client
-    # Change to -precomposed to not have the glass effect on the icons
-    insert("link", rel: "apple-touch-icon", href: asset("images/apple-touch-icon-57x57.png"))
-    insert("link", rel: "apple-touch-icon", href: asset("images/apple-touch-icon-114x114.png"))
-    insert_top("script", data-keep: "true", type: "text/javascript", src: asset("javascript/main.js"))
+  $("./body") {
+    insert_bottom("div", class: "myassets") {
+      #insert("link", rel: "stylesheet", type: "text/css", href: sass($device_stylesheet))
+      insert("link", rel: "shortcut icon", href: asset("images/favicon.ico"))
+      # The images below are placeholders, get real ones from the client
+      # Change to -precomposed to not have the glass effect on the icons
+      insert("link", rel: "apple-touch-icon", href: asset("images/apple-touch-icon-57x57.png"))
+      insert("link", rel: "apple-touch-icon", href: asset("images/apple-touch-icon-114x114.png"))
+      insert_top("script", data-keep: "true", type: "text/javascript", src: asset("javascript/main.js"))
+    }
   }
 }
 
