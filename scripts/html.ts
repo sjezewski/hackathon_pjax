@@ -9,12 +9,9 @@ $("/html") {
  @import sections/header.ts
  @import sections/footer.ts
 
- @import mappings.ts
+ @import mappings.ts 
  
- 
- 
- 
-  $(".//*[contains(@class,'sub-nav')]//a") {
+  $(".//*[contains(@class,'sub-nav')]//a|.//*[@id='nav']//a") {
     pjaxify("#main")
   }
 }

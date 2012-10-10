@@ -3,13 +3,7 @@
 ######
 
 @func XMLNode.pjaxify(Text %css_selector) {
-  match($x_pjax, /.+/) {
-    log("PAXJASDFASDFASDGF!!")
-  }
-  log(": ------------------- /")
-
-  attribute("data-pjax", %css_selector)
-  
+  attribute("data-pjax", %css_selector)  
 }
 
 
@@ -18,41 +12,31 @@
     $pjax = "true"    
   }
 
-  
-
    html(%encoding) {  
      yield()
        match($pjax,"true") {
      
           log("EXTRACTING WEVERYASFLGKHSDFG")
           # Extract the title
-          $title = fetch("//title/text()")
+          $title = "<title>" + fetch("//title/text()") + "</title>"
           # Extract the pjax content
           $$($x_pjax_container) {
             $content = inner()
           }
        }
-          
-#          $content = fetch("//*[data-pjax-container]")
      
    }
     match($pjax) {
       with("true") {
-        log("PJAX!!!!")
-        $title = "<title> wowweee </title>"
-#        $content = "<span onclick='javascript:alert(\"hi\")'> Click me </span>"
-        log($title + "\n\n")
-        log($content + "\n\n")
+        match($debug_pjax,"true") {
+          log("PJAX Title:" + $title + "\n\n")
+          log("PJAX Content:" + $content + "\n\n")
+        }
         set($title + "\r\n\r\n" + $content)
-      }
-      else() {
-   
       }
     }
 }
 
-@func Text.pjax_html() {
-}
 
 ####################
 ### Bundled Functions
