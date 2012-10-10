@@ -52,10 +52,7 @@ This responds to the headers that pjax sends via ajax (`x-pjax` and `x-pjax-cont
   - And those links that are normal links 
 
 
-
-
-
-
+---
 
 
 # Project Info
