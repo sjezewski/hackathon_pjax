@@ -14,11 +14,10 @@
 
    html(%encoding) {  
      yield()
-       match($pjax,"true") {
-     
-          log("EXTRACTING WEVERYASFLGKHSDFG")
+       match($pjax,"true") {     
           # Extract the title
           $title = "<title>" + fetch("//title/text()") + "</title>"
+
           # Extract the pjax content
           $$($x_pjax_container) {
             $content = inner()
