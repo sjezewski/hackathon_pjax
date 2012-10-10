@@ -1,0 +1,7 @@
+{
+	"host_map": [
+		"$.moovweb.com => www.moovweb.com",
+		"$.moovweb.com => moovweb.com",
+		"$.beta.moovweb.com => beta.moovweb.com"
+	]
+}
